@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<ul>
+    <h2>Список заказов</h2>
+    <li>id - table number - items - total - status</li>
+    {% for order in orders %}
+        <li><a href="#">{{ order.id }} - {{ order.table_number }} - {{ order.items }} -
+            {{ order.total }} - {{ order.status }}</a></li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
