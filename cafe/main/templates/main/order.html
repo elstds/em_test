@@ -1,5 +1,11 @@
-{% extends 'main/base.html' %}
-
-{% block content %}
-
-{% endblock %}
+<td>{{ order.id }}</td>
+<td>{{ order.table_number }}</td>
+<td>
+    <ul class="list-group list-group-flush list-group-numbered">
+        {% for item in order.items %}
+            <li class="list-group-item">{{ item }}</li>
+        {% endfor %}
+    </ul>
+</td>
+<td>{{ order.total }}</td>
+<td>{{ order.status }}</td>

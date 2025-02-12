@@ -1,14 +1,41 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<ul>
-    <h2>Список заказов</h2>
-    <li>id - table number - items - total - status</li>
-    {% for order in orders %}
-        <li><a href="#">{{ order.id }} - {{ order.table_number }} - {{ order.items }} -
-            {{ order.total }} - {{ order.status }}</a></li>
-    {% endfor %}
-</ul>
-
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Список заказов</h2>
+    <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-success">Новый заказ</button>
+            <button type="button" class="btn btn-sm btn-danger">Удалить заказ</button>
+            <button type="button" class="btn btn-sm btn-warning">Изменить</button>
+          </div>
+    </div>
+</div>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th class="table-primary">ID</th>
+                <th class="table-primary">Номер стола</th>
+                <th class="table-primary">Список блюд</th>
+                <th class="table-primary">Общая стоимость</th>
+                <th class="table-primary">Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                {% if order.status == 'в ожидании' %}
+                    <tr class="table-danger">
+                {% elif order.status == 'готово' %}
+                    <tr class="table-warning">
+                {% elif order.status == 'оплачено' %}
+                    <tr class="table-success">
+                {% else %}
+                    <tr>
+                {% endif %}
+                    {% include 'main/order.html' %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}
