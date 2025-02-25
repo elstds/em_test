@@ -28,6 +28,14 @@
                     <label for="table_num" class="form-label">Номер стола</label>
                     <input type="number" class="form-control" id="table_num" required>
                   </div>
+                    <div class="btn-group mb-3">
+                        <select class="form-select" aria-label="items-select">
+                            {% for item in items %}
+                                <option value="{{ item.id }}">{{ item.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-outline-light" id="add_item_in_order" type="button">Добавить</button>
+                    </div>
                   <div class="mb-3">
                     <label for="items" class="form-label">Список блюд</label>
                     <textarea class="form-control" id="items" required></textarea>
